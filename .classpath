@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/play-protocolbuffers.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool.jar"/>
+	<classpathentry kind="lib" path="lib/metouia.jar"/>
+	<classpathentry kind="lib" path="lib/QSAdminGUI.jar"/>
+	<classpathentry kind="lib" path="lib/QuickServer.jar" sourcepath="/home/rich/Downloads/QuickServer1.4.7/src/main"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-2.3.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/rich/apps/play-1.0.2/framework/play.jar" sourcepath="/home/rich/apps/play-1.0.2/framework/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

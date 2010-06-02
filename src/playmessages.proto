@@ -1,0 +1,21 @@
+package playmessages;
+
+message PlayRequestWrapper {
+
+	optional IncomingMessage incomingMessage = 1;
+
+}
+
+message IncomingMessage {
+	required string name = 1;
+}
+
+message PlayResponseWrapper {
+
+	optional OutgoingMessage outgoingMessage = 1;
+	
+}
+
+message OutgoingMessage {
+	required string name = 1;
+}
