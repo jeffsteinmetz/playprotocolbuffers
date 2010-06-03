@@ -1,0 +1,34 @@
+<project default="buildjar">
+
+<property name="tmp.dir" value="tmp"/>
+<property name="dist.dir" value="dist"/>
+<property name="path-to-protoc" value="/home/rich/apps/protobuf-2.3.0/protoc"/>
+
+<target name="clean">
+	<delete dir="${tmp.dir}"/>
+	<delete dir="${dist.dir}"/>
+
+</target>
+
+<target name="prepare" depends="clean">
+	<mkdir dir="${tmp.dir}"/>
+	<mkdir dir="${dist.dir}"/>
+</target>
+
+<target name="protoc" depends="prepare">
+	<exec executable="${path-to-protoc}">
+		<arg value="--java_out=${tmp.dir}"/>
+		<arg value="playmessages.proto"/>
+	</exec>
+</target>
+
+<target name="jar" depends="protoc">
+	<jar destfile="${dist.dir}/messages.jar" basedir="${tmp.dir}"/>
+</target>
+
+<target name="buildjar" depends="jar">
+	<delete dir="${tmp.dir}"/>
+</target>
+
+
+</project>
