@@ -2,17 +2,20 @@
 
 <property name="tmp.dir" value="tmp"/>
 <property name="dist.dir" value="dist"/>
+<property name="build.dir" value="build"/>
 <property name="path-to-protoc" value="/home/rich/apps/protobuf-2.3.0/protoc"/>
 
 <target name="clean">
 	<delete dir="${tmp.dir}"/>
 	<delete dir="${dist.dir}"/>
+	<delete dir="${build.dir}"/>
 
 </target>
 
 <target name="prepare" depends="clean">
 	<mkdir dir="${tmp.dir}"/>
 	<mkdir dir="${dist.dir}"/>
+	<mkdir dir="${build.dir}"/>
 </target>
 
 <target name="protoc" depends="prepare">
@@ -22,8 +25,13 @@
 	</exec>
 </target>
 
-<target name="jar" depends="protoc">
-	<jar destfile="${dist.dir}/messages.jar" basedir="${tmp.dir}"/>
+<target name="build" depends="protoc">
+	<javac srcdir="${tmp.dir}" destdir="${build.dir}" classpath="../lib/protobuf-java-2.3.0.jar"/>
+
+</target>
+
+<target name="jar" depends="build">
+	<jar destfile="${dist.dir}/messages.jar" basedir="${build.dir}"/>
 </target>
 
 <target name="buildjar" depends="jar">
