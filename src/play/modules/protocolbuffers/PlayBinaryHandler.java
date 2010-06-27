@@ -15,6 +15,8 @@ import org.quickserver.net.server.DataMode;
 import org.quickserver.net.server.DataType;
 
 import play.Play;
+import play.PlayPlugin;
+import play.classloading.enhancers.LocalvariablesNamesEnhancer.LocalVariablesNamesTracer;
 
 import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Descriptors.FieldDescriptor;
@@ -36,7 +38,9 @@ public class PlayBinaryHandler implements ClientBinaryHandler {
 				//find a suitable method in the controller
 				try {
 					final Method methodToInvoke = findMethodForMessage(messageToHandle);
+					before();
 					final GeneratedMessage result = (GeneratedMessage)methodToInvoke.invoke(null, messageToHandle);
+					after();
 					System.out.println("ClientHandler is:"+clientHandler.getClass().getName());
 					clientHandler.setDataMode(DataMode.BINARY, DataType.OUT);
 					clientHandler.sendClientBinary(result.toByteArray());
@@ -72,6 +76,25 @@ public class PlayBinaryHandler implements ClientBinaryHandler {
 		
 
 	}
+	
+    public void before() {
+        Thread.currentThread().setContextClassLoader(Play.classloader);
+        for (PlayPlugin plugin : Play.plugins) {
+            plugin.beforeInvocation();
+        }
+    }
+
+    /**
+     * Things to do after an Invocation.
+     * (if the Invocation code has not thrown any exception)
+     */
+    public void after() {
+        for (PlayPlugin plugin : Play.plugins) {
+            plugin.afterInvocation();
+        }
+        LocalVariablesNamesTracer.checkEmpty(); // detect bugs ....
+    }
+	
 
 	private Method findMethodForMessage(Object messageToHandle) throws Exception {
 		System.out.println("Message:"+messageToHandle.getClass().getName());
