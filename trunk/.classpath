@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="lib/QuickServer.jar" sourcepath="/home/rich/Downloads/QuickServer1.4.7/src/main"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/rich/apps/play-1.0.2/framework/play.jar" sourcepath="/home/rich/apps/play-1.0.2/framework/src"/>
 	<classpathentry kind="lib" path="/GPBTest/lib/messages.jar"/>
+	<classpathentry kind="lib" path="/home/rich/apps/play-1.0.3.2/framework/play.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

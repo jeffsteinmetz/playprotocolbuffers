@@ -15,6 +15,13 @@
         </fileset>
     </path>
 
+	<target name="dist" depends="build">
+		<mkdir dir="${play.path}/modules/protocolbuffers"/>
+		<copy todir="${play.path}/modules/protocolbuffers">
+			<fileset dir="."/>
+		</copy>
+	</target>
+	
     <target name="build" depends="compile">
 
         <copy todir="tmp/classes">
