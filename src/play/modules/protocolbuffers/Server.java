@@ -16,7 +16,11 @@ public class Server extends PlayPlugin {
 	public void onConfigurationRead() {
 		try {
 			QuickServer server = new QuickServer();
-			final int port = Integer.parseInt((String)Play.configuration.get("gpb.port"));
+			final String gpbPort = (String)Play.configuration.get("gpb.port");
+			if (gpbPort == null || gpbPort.length()==0) {
+				throw new IllegalStateException("Please enter a port number into conf/application.conf under the key gpb.port");
+			}
+			final int port = Integer.parseInt(gpbPort);
 			server.setPort(port);
 			server.setDefaultDataMode(DataMode.BINARY, DataType.IN);
 			server.setDefaultDataMode(DataMode.BINARY, DataType.OUT);
