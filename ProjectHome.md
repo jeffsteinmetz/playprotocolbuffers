@@ -1,0 +1,1 @@
+A way to invoke Controller methods on the Play Framework by sending in Google Protocol Buffers messages.
